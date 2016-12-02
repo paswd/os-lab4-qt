@@ -342,7 +342,6 @@ QString EditWrite(QString filename, unsigned long long row, unsigned long long c
         unlink(filename_tmp.toLocal8Bit());
     }
     file_tmp = fopen(filename_tmp.toLocal8Bit(), "w");
-
     char sym;
     unsigned long long current_row = 1;
     unsigned long long current_col = 1;

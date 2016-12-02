@@ -3,6 +3,7 @@
 #include <QString>
 #include <QFileDialog>
 #include <QCursor>
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -115,7 +116,8 @@ void MainWindow::on_ConsoleStart_clicked()
 
         unsigned long long row = command.section(' ', 2, 2).toULongLong();
         unsigned long long col = command.section(' ', 3, 3).toULongLong();
-        QString text = command.section(' ', 4, 4);
+        //QString text = command.section(' ', 4, 4);
+        QString text = GetParameter(command, 4);
         ui->ConsoleOut->setText(EditWrite(filename, row, col, text));
 
     } else if (action == "delete") {
