@@ -1,0 +1,748 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>600</width>
+    <height>700</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>600</width>
+    <height>700</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>600</width>
+    <height>700</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>TextProcessor</string>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QTabWidget" name="tabWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>611</width>
+      <height>691</height>
+     </rect>
+    </property>
+    <property name="currentIndex">
+     <number>0</number>
+    </property>
+    <widget class="QWidget" name="tab">
+     <attribute name="title">
+      <string>Интерактивный режим</string>
+     </attribute>
+     <widget class="QLabel" name="label">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>61</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Файл:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InteractiveFileName">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>30</y>
+        <width>451</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="InteractiveSelectFile">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>30</y>
+        <width>111</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Обзор...</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InteractiveFileSizeMin">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>120</y>
+        <width>190</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_2">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>100</y>
+        <width>251</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Минимальный размер файла:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_3">
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>100</y>
+        <width>251</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Максимальный размер файла:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InteractiveFileSizeMax">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>300</x>
+        <y>120</y>
+        <width>190</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0</string>
+      </property>
+     </widget>
+     <widget class="QComboBox" name="InteractiveFileSizeMinType">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>120</y>
+        <width>76</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string notr="true">Байт</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>КБ</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>МБ</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ГБ</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QComboBox" name="InteractiveFileSizeMaxType">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>120</y>
+        <width>76</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <item>
+       <property name="text">
+        <string>Байт</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>КБ</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>МБ</string>
+       </property>
+      </item>
+      <item>
+       <property name="text">
+        <string>ГБ</string>
+       </property>
+      </item>
+     </widget>
+     <widget class="QCheckBox" name="InteractiveSetFileLimits">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>70</y>
+        <width>241</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Задать лимит размера файла</string>
+      </property>
+     </widget>
+     <widget class="Line" name="line">
+      <property name="geometry">
+       <rect>
+        <x>150</x>
+        <y>160</y>
+        <width>21</width>
+        <height>231</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="InteractiveGetRange">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>180</y>
+        <width>141</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Вывести диапазон</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>160</y>
+        <width>121</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Вывод на экран</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_7">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>160</y>
+        <width>61</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Поиск</string>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="InteractiveSearchParamPrefix">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>180</y>
+        <width>141</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>По префиксу</string>
+      </property>
+      <property name="checked">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="InteractiveSearchParamPostfix">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>200</y>
+        <width>141</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>По суффиксу</string>
+      </property>
+      <property name="checked">
+       <bool>false</bool>
+      </property>
+     </widget>
+     <widget class="QRadioButton" name="InteractiveSearchParamBasic">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>220</y>
+        <width>141</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>По любой части</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_8">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>250</y>
+        <width>61</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Образец:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InteractiveSearchSubstr">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>270</y>
+        <width>161</width>
+        <height>27</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="InteractiveSearch">
+      <property name="geometry">
+       <rect>
+        <x>170</x>
+        <y>300</y>
+        <width>94</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Найти</string>
+      </property>
+     </widget>
+     <widget class="Line" name="line_2">
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>160</y>
+        <width>21</width>
+        <height>231</height>
+       </rect>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+     </widget>
+     <widget class="QWidget" name="widget_2" native="true">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>180</y>
+        <width>101</width>
+        <height>51</height>
+       </rect>
+      </property>
+      <widget class="QRadioButton" name="InteractiveEditWrite">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>10</y>
+         <width>81</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Запись</string>
+       </property>
+       <property name="checked">
+        <bool>true</bool>
+       </property>
+      </widget>
+      <widget class="QRadioButton" name="InteractiveEditDelete">
+       <property name="geometry">
+        <rect>
+         <x>0</x>
+         <y>30</y>
+         <width>91</width>
+         <height>20</height>
+        </rect>
+       </property>
+       <property name="text">
+        <string>Удаление</string>
+       </property>
+      </widget>
+     </widget>
+     <widget class="QLabel" name="label_9">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>280</y>
+        <width>131</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Текст для записи:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_10">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>160</y>
+        <width>121</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Редактирование</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_11">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>230</y>
+        <width>61</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Строка:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InteractiveEditRow">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>250</y>
+        <width>81</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>1</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InteractiveEditCol">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>250</y>
+        <width>81</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>1</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_12">
+      <property name="geometry">
+       <rect>
+        <x>450</x>
+        <y>230</y>
+        <width>71</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Столбец:</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="InteractiveEdit">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>360</y>
+        <width>121</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Редактировать</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_13">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>390</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Результат:</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="InteractiveResult">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>410</y>
+        <width>571</width>
+        <height>201</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="InteractiveResultClear">
+      <property name="geometry">
+       <rect>
+        <x>490</x>
+        <y>620</y>
+        <width>94</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Очистить</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="InteractiveEditSymCnt">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>200</y>
+        <width>111</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>0</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_14">
+      <property name="geometry">
+       <rect>
+        <x>470</x>
+        <y>180</y>
+        <width>101</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Число знаков:</string>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="InteractiveEditText">
+      <property name="geometry">
+       <rect>
+        <x>360</x>
+        <y>300</y>
+        <width>221</width>
+        <height>51</height>
+       </rect>
+      </property>
+     </widget>
+    </widget>
+    <widget class="QWidget" name="tab_2">
+     <attribute name="title">
+      <string>Командный режим</string>
+     </attribute>
+     <widget class="QPushButton" name="ConsoleStart">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>250</y>
+        <width>571</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Выполнить</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_4">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>200</y>
+        <width>81</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Команда:</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="ConsoleIn">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>220</y>
+        <width>571</width>
+        <height>27</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_5">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>300</y>
+        <width>91</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Результат:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_15">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>10</y>
+        <width>191</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Список текстовых команд:</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_16">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>40</y>
+        <width>291</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>range &lt;file&gt; [&lt;min&gt; &lt;max&gt;] - диапазон</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_17">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>60</y>
+        <width>441</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>search &lt;file&gt; prefix &lt;substr&gt; [&lt;min&gt; &lt;max&gt;] - поиск префикса</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_18">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>80</y>
+        <width>451</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>search &lt;file&gt; postfix &lt;substr&gt; [&lt;min&gt; &lt;max&gt;] - поиск суффикса</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_19">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>100</y>
+        <width>451</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>search &lt;file &gt; basic &lt;substr&gt; [&lt;min&gt; &lt;max&gt;] - обычный поиск</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_20">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>120</y>
+        <width>551</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>edit &lt;file&gt; &lt;row&gt; &lt;col&gt; &lt;text&gt; [&lt;min&gt; &lt;max&gt;] - вставка в заданную позицию</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_21">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>140</y>
+        <width>581</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>delete &lt;file&gt; &lt;row&gt; &lt;col&gt; &lt;length&gt; [&lt;min&gt; &lt;max&gt;]- удаление из заданной позиции</string>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="ConsoleOut">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>320</y>
+        <width>571</width>
+        <height>321</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_22">
+      <property name="geometry">
+       <rect>
+        <x>10</x>
+        <y>170</y>
+        <width>571</width>
+        <height>16</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Перед пробелами используйте знак '\'</string>
+      </property>
+     </widget>
+    </widget>
+   </widget>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections/>
+</ui>
