@@ -35,6 +35,8 @@ void MainWindow::on_ConsoleStart_clicked()
 {
     //Action console
     this->setCursor(Qt::WaitCursor);
+    unsigned long long max_mapping = ui->SettingsMemoryLimit->text().toULongLong();
+    max_mapping = ConvertToBytes(max_mapping, ui->SettingsMemoryLimitType->currentIndex());
     QString command = ui->ConsoleIn->text();
     command = command.simplified();
     QString action = command.section(' ', 0, 0);
@@ -57,7 +59,7 @@ void MainWindow::on_ConsoleStart_clicked()
             this->setCursor(Qt::ArrowCursor);
             return;
         }
-        ui->ConsoleOut->setText(GetRange(filename));
+        ui->ConsoleOut->setText(GetRange(filename, max_mapping));
     } else if (action == "search") {
         //QString filename = command.section(' ', 1, 1);
         QString filename = GetParameter(command, 1);
@@ -85,11 +87,11 @@ void MainWindow::on_ConsoleStart_clicked()
         QString substr = GetParameter(command, 3);
 
         if (type == "basic") {
-            ui->ConsoleOut->setText(SearchInFileBasic(filename, substr));
+            ui->ConsoleOut->setText(SearchInFileBasic(filename, substr, max_mapping));
         } else if (type == "prefix") {
-            ui->ConsoleOut->setText(SearchInFilePrefix(filename, substr));
+            ui->ConsoleOut->setText(SearchInFilePrefix(filename, substr, max_mapping));
         } else if (type == "postfix") {
-            ui->ConsoleOut->setText(SearchInFilePostfix(filename, substr));
+            ui->ConsoleOut->setText(SearchInFilePostfix(filename, substr, max_mapping));
         } else {
             ui->ConsoleOut->setText("Parameter is incorrect\n");
         }
@@ -118,7 +120,7 @@ void MainWindow::on_ConsoleStart_clicked()
         unsigned long long col = command.section(' ', 3, 3).toULongLong();
         //QString text = command.section(' ', 4, 4);
         QString text = GetParameter(command, 4);
-        ui->ConsoleOut->setText(EditWrite(filename, row, col, text));
+        ui->ConsoleOut->setText(EditWrite(filename, row, col, text, max_mapping));
 
     } else if (action == "delete") {
         QString filename = command.section(' ', 1, 1);
@@ -143,7 +145,7 @@ void MainWindow::on_ConsoleStart_clicked()
         unsigned long long row = command.section(' ', 2, 2).toULongLong();
         unsigned long long col = command.section(' ', 3, 3).toULongLong();
         unsigned long long length = command.section(' ', 4, 4).toULongLong();
-        ui->ConsoleOut->setText(EditDelete(filename, row, col, length));
+        ui->ConsoleOut->setText(EditDelete(filename, row, col, length, max_mapping));
 
     } else {
         ui->ConsoleOut->setText("Unknown command\n");
@@ -182,18 +184,22 @@ void MainWindow::on_InteractiveSetFileLimits_clicked()
 void MainWindow::on_InteractiveGetRange_clicked()
 {
     this->setCursor(Qt::WaitCursor);
+    unsigned long long max_mapping = ui->SettingsMemoryLimit->text().toULongLong();
+    max_mapping = ConvertToBytes(max_mapping, ui->SettingsMemoryLimitType->currentIndex());
     QString filename = ui->InteractiveFileName->text();
     if (!IsCurrentFileInRange(filename, ui)) {
         ui->InteractiveResult->setText("File size is out of range\n");
         return;
     }
-    ui->InteractiveResult->setText(GetRange(filename));
+    ui->InteractiveResult->setText(GetRange(filename, max_mapping));
     this->setCursor(Qt::ArrowCursor);
 }
 
 void MainWindow::on_InteractiveSearch_clicked()
 {
     this->setCursor(Qt::WaitCursor);
+    unsigned long long max_mapping = ui->SettingsMemoryLimit->text().toULongLong();
+    max_mapping = ConvertToBytes(max_mapping, ui->SettingsMemoryLimitType->currentIndex());
     QString filename = ui->InteractiveFileName->text();
     if (!IsCurrentFileInRange(filename, ui)) {
         ui->InteractiveResult->setText("File size is out of range\n");
@@ -202,11 +208,11 @@ void MainWindow::on_InteractiveSearch_clicked()
     QString substr = ui->InteractiveSearchSubstr->text();
     QString res = "";
     if (ui->InteractiveSearchParamPrefix->isChecked()) {
-        res = SearchInFilePrefix(filename, substr);
+        res = SearchInFilePrefix(filename, substr, max_mapping);
     } else if (ui->InteractiveSearchParamPostfix->isChecked()) {
-        res = SearchInFilePostfix(filename, substr);
+        res = SearchInFilePostfix(filename, substr, max_mapping);
     } else {
-        res = SearchInFileBasic(filename, substr);
+        res = SearchInFileBasic(filename, substr, max_mapping);
     }
     ui->InteractiveResult->setText(res);
     this->setCursor(Qt::ArrowCursor);
@@ -215,6 +221,8 @@ void MainWindow::on_InteractiveSearch_clicked()
 void MainWindow::on_InteractiveEdit_clicked()
 {
     this->setCursor(Qt::WaitCursor);
+    unsigned long long max_mapping = ui->SettingsMemoryLimit->text().toULongLong();
+    max_mapping = ConvertToBytes(max_mapping, ui->SettingsMemoryLimitType->currentIndex());
     QString filename = ui->InteractiveFileName->text();
     if (!IsCurrentFileInRange(filename, ui)) {
         ui->InteractiveResult->setText("File size is out of range\n");
@@ -224,10 +232,10 @@ void MainWindow::on_InteractiveEdit_clicked()
     unsigned long long row = (size_t) ui->InteractiveEditRow->text().toULongLong();
     if (ui->InteractiveEditWrite->isChecked()) {
         QString text = ui->InteractiveEditText->toPlainText();
-        ui->InteractiveResult->setText(EditWrite(filename, row, col, text));
+        ui->InteractiveResult->setText(EditWrite(filename, row, col, text, max_mapping));
     } else {
         unsigned long long cnt = ui->InteractiveEditSymCnt->text().toULongLong();
-        ui->InteractiveResult->setText(EditDelete(filename, row, col, cnt));
+        ui->InteractiveResult->setText(EditDelete(filename, row, col, cnt, max_mapping));
     }
     this->setCursor(Qt::ArrowCursor);
 }

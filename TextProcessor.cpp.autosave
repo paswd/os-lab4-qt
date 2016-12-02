@@ -8,7 +8,6 @@
 #include <fcntl.h>
 #include <sys/stat.h>
 #include <QVector>
-#include <QDebug>
 
 bool IsSeparator(char sym) {
     if (sym == ' ' || sym == '\n' || sym == '\t' || sym == '\0') {
@@ -18,13 +17,6 @@ bool IsSeparator(char sym) {
 }
 
 unsigned long long ConvertToBytes(unsigned long long num, size_t unit) {
-    /*if (unit == "КБ") {
-        num *= 1024;
-    } else if (unit == "МБ") {
-        num *= 1024 * 1024;
-    } else if (unit == "ГБ") {
-        num *= 1024 * 1024 * 1024;
-    }*/
     for (size_t i = 0; i < unit; i++) {
         num *= 1024;
     }
@@ -60,7 +52,6 @@ QString GetParameter(QString str, size_t num) {
     int i;
     bool special = false;
     for (i = 0; cnt < num && i < str.size(); i++) {
-        //qDebug() << "Test1";
         if (special) {
             special = false;
             continue;
@@ -72,11 +63,9 @@ QString GetParameter(QString str, size_t num) {
            special = true;
         }
     }
-    //size_t start = i;
     special = false;
     QString res = "";
     for (; cnt == num && i < str.size(); i++) {
-        //qDebug() << "Test2";
         if (special) {
             res += str[i];
             special = false;
@@ -101,11 +90,9 @@ QString GetRange(QString filename, size_t max_mapping) {
     for (size_t i = 0; i < alphabet_len; i++) {
         arr[i] = 0;
     }
-    //FILE *file;
     FileMapping mapping;
     QString result = "";
     if ((mapping.fd = open(filename.toLocal8Bit(), O_RDONLY, 0)) < 0) {
-        result = "Cannot open file\n";
         return result;
     }
     mapping.FileSize = FileSize(filename);
@@ -113,7 +100,6 @@ QString GetRange(QString filename, size_t max_mapping) {
     qDebug() << mapping.FileSize;
     qDebug() << filename;
     while (page < mapping.FileSize) {
-        //qDebug() << "Cicle1";
         mapping.DataPtr = (char *) mmap(NULL, max_mapping, PROT_READ, MAP_PRIVATE, mapping.fd, page);
         if (mapping.DataPtr == MAP_FAILED) {
             result = "Mapping: fatal error\n";
@@ -122,7 +108,6 @@ QString GetRange(QString filename, size_t max_mapping) {
             return result;
         }
         for (size_t i = 0; i < max_mapping; i++) {
-            //qDebug() << "Cicle2";
             arr[(size_t) mapping.DataPtr[i]]++;
         }
         munmap(mapping.DataPtr, max_mapping);
@@ -155,7 +140,6 @@ QString SearchInFilePrefix(QString filename, QString substr, size_t max_mapping)
     mapping.FileSize = FileSize(filename);
     size_t page = 0;
 
-    //char sym;
     bool ignore = false;
     bool found = false;
     unsigned long long pos = 0;
@@ -167,7 +151,6 @@ QString SearchInFilePrefix(QString filename, QString substr, size_t max_mapping)
     unsigned long long current_row = 0;
     while (page < mapping.FileSize) {
         mapping.DataPtr = (char *) mmap(NULL, max_mapping, PROT_READ, MAP_PRIVATE, mapping.fd, page);
-        //while ((sym = fgetc(file)) != EOF) {
         for (size_t i = 0; i < max_mapping; i++) {
             if (ignore) {
                 if (mapping.DataPtr[i] == '\n') {
@@ -228,9 +211,7 @@ QString SearchInFilePostfix(QString filename, QString substr, size_t max_mapping
     mapping.FileSize = FileSize(filename);
     size_t page = 0;
 
-    //char sym;
     bool found = false;
-    //unsigned long long pos = 0;
 
     unsigned long long col = 1;
     unsigned long long row = 1;
@@ -244,7 +225,6 @@ QString SearchInFilePostfix(QString filename, QString substr, size_t max_mapping
     size_t nw_pos = arr_tmp.size() - 1;
     while (page < mapping.FileSize) {
         mapping.DataPtr = (char *) mmap(NULL, max_mapping, PROT_READ, MAP_PRIVATE, mapping.fd, page);
-        //while ((sym = fgetc(file)) != EOF) {
         for (size_t i = 0; i < max_mapping; i++) {
             if (IsSeparator(mapping.DataPtr[i])) {
                 found = true;
@@ -299,15 +279,8 @@ QString SearchInFileBasic(QString filename, QString substr, size_t max_mapping) 
     mapping.FileSize = FileSize(filename);
     size_t page = 0;
 
-    //char sym;
     bool found = false;
     unsigned long long pos = 0;
-
-    //unsigned long long col = 1;
-    //unsigned long long row = 1;
-
-    //unsigned long long current_col = 0;
-    //unsigned long long current_row = 0;
 
     QVector <char> arr_tmp;
     QVector <unsigned long long> cols;
@@ -320,7 +293,6 @@ QString SearchInFileBasic(QString filename, QString substr, size_t max_mapping) 
     rows[rows.size() - 1] = 1;
     while (page < mapping.FileSize) {
         mapping.DataPtr = (char *) mmap(NULL, max_mapping, PROT_READ, MAP_PRIVATE, mapping.fd, page);
-        //while ((sym = fgetc(file)) != EOF) {
         for (size_t i = 0; i < max_mapping; i++) {
             for (size_t i = nw_pos + 1; i < (size_t) arr_tmp.size(); i++) {
                 arr_tmp[i - 1] = arr_tmp[i];
